@@ -1,7 +1,11 @@
-🧩 Validación de Pedidos con Pipeline Pattern – Spring Boot + MySQL
-Este proyecto implementa el patrón de diseño Pipeline para validar entidades Order en una API REST construida con Spring Boot. Utiliza MySQL como base de datos y sigue buenas prácticas de organización de código en paquetes.
+# 🧩 Validación de Pedidos con Pipeline Pattern – Spring Boot + MySQL
 
-📦 Estructura del Proyecto
+Este proyecto implementa el patrón de diseño **Pipeline** para validar entidades `Order` en una API REST construida con **Spring Boot**. Utiliza MySQL como base de datos persistente y sigue buenas prácticas de organización de código.
+
+---
+
+## 📦 Estructura del Proyecto
+```
 com.example.pipelineexample
 │
 ├── controller
@@ -18,43 +22,45 @@ com.example.pipelineexample
 │   └── ValidateProductosStage.java
 │
 └── PipelineExampleApplication.java
+```
+---
 
+## 🛠️ Tecnologías Utilizadas
 
-🛠️ Tecnologías Utilizadas
-Java 17+
+- Java 17+
+- Spring Boot 3.5.x
+- Spring Web
+- Spring Data JPA
+- MySQL
+- Lombok
+- Maven
 
-Spring Boot 3.5.x
+---
 
-Spring Web
+## 🔍 Descripción del Pipeline
 
-Spring Data JPA
+El paquete `pipeline` contiene una implementación del patrón Pipeline donde cada etapa valida un aspecto específico del pedido:
 
-MySQL
+### Etapas de Validación:
+- `ValidateClienteStage`: Verifica que el nombre del cliente no sea nulo o vacío
+- `ValidateTotalStage`: Asegura que el total del pedido sea mayor a cero
+- `ValidateProductosStage`: Valida que se haya incluido al menos un producto
 
-Lombok
+Todas las etapas implementan la interfaz `PipelineStage` y se ejecutan secuencialmente en el `Pipeline`.
 
-🔍 Descripción del Pipeline
-El paquete pipeline contiene una implementación del patrón Pipeline, donde cada etapa representa una validación específica sobre un objeto Order.
+---
 
-Etapas de Validación:
-ValidateClienteStage: Verifica que el nombre del cliente no sea nulo o vacío.
+## 🧪 Endpoints API REST
 
-ValidateTotalStage: Asegura que el total del pedido sea mayor a cero.
-
-ValidateProductosStage: Valida que se haya enviado al menos un producto.
-
-Todas estas etapas se ejecutan secuencialmente dentro del Pipeline.
-
-🧪 Endpoints REST
-✅ Validar un Pedido
-POST /orders/validate
-Request Body:
+### ✅ Validar un Pedido (Sin persistencia)
+**POST** `/orders/validate`
+```json
 {
   "cliente": "Alejandro",
   "total": 1200.0,
   "productos": ["Pizza", "Empanadas"]
 }
-
+```
 
 Si todas las validaciones son correctas, responde con:
 "Pedido válido"
@@ -111,6 +117,7 @@ curl -X POST http://localhost:8080/orders/validate \
 .Agregar Swagger para documentar la API.
 
 .Agregar pruebas unitarias con JUnit y Mockito.
+
 
 
 
