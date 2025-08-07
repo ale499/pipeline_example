@@ -69,7 +69,7 @@ Si alguna validación falla, responde con:
 "Error: <mensaje de validación>"
 
 ⚙️ Configuración de Base de Datos
-
+```json
 application.properties (configurado para MySQL):
 spring.datasource.url=jdbc:mysql://localhost:3306/pipeline_db
 spring.datasource.username=tu_usuario
@@ -79,7 +79,7 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
-
+```
 ▶️ Cómo Ejecutar el Proyecto
 
 1. Cloná el repositorio:
@@ -117,6 +117,7 @@ curl -X POST http://localhost:8080/orders/validate \
 .Agregar Swagger para documentar la API.
 
 .Agregar pruebas unitarias con JUnit y Mockito.
+
 
 
 
